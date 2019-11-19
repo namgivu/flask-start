@@ -19,7 +19,7 @@ pipenv run python src/app.py
 : wait until the web app ready to serve e.g. by docker-compose up
 
 # view web at /
-http :19111/  # should see Hi there!
+http :19111/hi  # should see Hi there!
 
 # stop it
 ./docker/stop-rm.sh
