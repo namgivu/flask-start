@@ -2,7 +2,7 @@
       sh=$(cd `dirname $BASH_SOURCE` && pwd)  # sh aka script_home_folder ref. https://stackoverflow.com/a/337006/248616
 app_home=`cd $sh/.. && pwd`
 
-source "$sh/.config.sh"
+source "$sh/.env"
 if [[ -z $IMAGE_NAME ]]; then echo 'Param :IMAGE_NAME is required as $1'; exit 1; fi
 
 docker image rm -f $IMAGE_NAME
