@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-sh=$(dirname `readlink -f $0`)  # sh aka script_home_folder ref. https://stackoverflow.com/a/337006/248616
+sh=$(cd `dirname $BASH_SOURCE` && pwd)  # sh aka script_home_folder ref. https://stackoverflow.com/a/337006/248616
 
-source "$sh/config.sh"
+source "$sh/.config.sh"
+if [[ -z $CONTAINER_NAME ]]; then echo 'Param :CONTAINER_NAME is required as $1'; exit 1; fi
 
-c=$CONTAINER_NAME
-printf "Removing $c... "
-docker stop $c 1>/dev/null 2>&1
-docker rm   $c 1>/dev/null 2>&1
-echo 'Done'
+docker stop $CONTAINER_NAME
+docker rm   $CONTAINER_NAME
+
+yes | docker container prune
