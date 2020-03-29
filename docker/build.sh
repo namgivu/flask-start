@@ -7,7 +7,7 @@ if [[ -z $IMAGE_NAME ]]; then echo 'Param :IMAGE_NAME is required as $1'; exit 1
 
 docker image rm -f $IMAGE_NAME
 
-docker build  -t $IMAGE_NAME        --file="$sh/Dockerfile"   $app_home
-#             #image name  #path of Dockerfile       #set host's folder
+docker build  -t $IMAGE_NAME  --file="$sh/Dockerfile"  $app_home
+#             #image name     #path of Dockerfile      #set host's folder
 
 docker image ls | grep $IMAGE_NAME
