@@ -12,7 +12,7 @@ cd $sh
     #                  #custom docker-compose        #run as background
     #                  #ref. https://stackoverflow.com/a/45158964/248616
 
-    echo; echo "WAITING for $CONTAINER_NAME ready ..."
+    echo; echo "WAITING for $CONTAINER_NAME installation ready ..."
         while true; do
             atlas_ready=`docker logs $CONTAINER_NAME 2>&1 | grep -c 'Serving Flask app' `
             if [[ $atlas_ready != 0 ]]; then break; fi
