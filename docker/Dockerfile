@@ -1,4 +1,4 @@
-FROM namgivu/ubuntu-pipenv:16.04-3.7
+FROM namgivu/ubuntu-pipenv:16.04-3.6
 
 # create THIS_APP folder
 WORKDIR /app
