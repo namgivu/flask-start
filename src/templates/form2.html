@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="style.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">Onboarding form 360F (Contract Details)</h2>
+        <br>
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label>First Name *</label>
+            {{ form.fname(class='form-control'}}
+          </div>
+
+          <div class="form-group">
+            <label for="lname2">Last Name *</label>
+            <input type="text" class="form-control" id="lname2" name="lname2" aria-describedby="last_name2" >
+          </div>
+
+          <div class="form-group">
+            <label for="job_title">Job Title *</label>
+            <input type="text" class="form-control" id="job_title" name="job_title" aria-describedby="job_title" >
+          </div>
+
+          <div class="form-group">
+            <label for="salary">Salary monthly (SGD) *</label>
+            <input type="number" class="form-control" id="salary" name="salary" aria-describedby="salary" >
+          </div>
+
+          <div class="form-group">
+            <label for="number-of-annual-leave-days">Number of Annual Leave Days *</label>
+            <input type="text" class="form-control" id="number-of-annual-leave-days" name="number-of-annual-leave-days" aria-describedby="number-of-annual-leave-days" >
+          </div>
+
+          <div class="form-group">
+            <label for="working-hours-per-week">Working Hours per Week (Standard 40h) *</label>
+            <input type="text" class="form-control" id="working-hours-per-week" name="working-hours-per-week" aria-describedby="working-hours-per-week">
+          </div>
+
+          <div class="form-group">
+            <label for="employment-start-date">Employment Start Date (DD-MM-YYYY) *</label>
+            <input type="text" class="form-control" id="employment-start-date" name="employment-start-date" aria-describedby="employment-start-date" >
+          </div>
+
+          <div class="form-group">
+            <label for="contract-duration">Contract Duration (limited / unlimited) *</label>
+            <input type="text" class="form-control" id="contract-duration" name="contract-duration" aria-describedby="contract-duration" >
+          </div>
+
+          <div class="form-group">
+            <label for="fringe-benefit">Fringe Benefit (for full time employees)</label>
+            <input type="text" class="form-control" id="fringe-benefit" name="fringe-benefit" aria-describedby="fringe-benefit" >
+          </div>
+
+          <div class="form-group">
+            <label for="group-insurance-coverage">Group Insurance Coverage (Management)</label>
+            <input type="text" class="form-control" id="group-insurance-coverage" name="group-insurance-coverage" aria-describedby="group-insurance-coverage" >
+          </div>
+
+          <div class="form-group">
+            <label for="special-arrangements">Special Arrangements (if any)</label>
+            <input type="text" class="form-control" id="special-arrangements" name="special-arrangements" aria-describedby="special-arrangements" >
+          </div>
+        </form>
+        <br>
+
+        <button type="button" name="send" class="btn btn-primary">SEND</button>
+        <button type="button" name="back" class="btn btn-success">BACK</button>
+    </div>
+</body>
+</html>
