@@ -10,4 +10,5 @@ docker image rm -f $IMAGE_NAME
 docker build  -t $IMAGE_NAME  --file="$sh/Dockerfile"  $app_home
 #             #image name     #path of Dockerfile      #set host's folder
 
-docker image ls | grep $IMAGE_NAME
+echo
+docker image ls | grep -E "$IMAGE_NAME|REPO" --color=always

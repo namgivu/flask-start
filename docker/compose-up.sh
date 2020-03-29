@@ -7,11 +7,25 @@ if [[ -z $CONTAINER_NAME ]]; then echo 'Param :CONTAINER_NAME is required as $1'
 if [[ -z $API_PORT ]];       then echo 'Param :API_PORT is required as $1'; exit 1; fi
 
 cd $sh
+    echo
     docker-compose  -f "$sh/docker-compose.yml"  up  -d
     #                  #custom docker-compose        #run as background
     #                  #ref. https://stackoverflow.com/a/45158964/248616
+
+    echo; echo "WAITING for $CONTAINER_NAME ready ..."
+        while true; do
+            atlas_ready=`docker logs $CONTAINER_NAME 2>&1 | grep -c 'Serving Flask app' `
+            if [[ $atlas_ready != 0 ]]; then break; fi
+            sleep 1
+        done
+
+    # the flask app ready now, printing container log
+    echo
+    docker-compose logs
+
 cd - 1>/dev/null
 
+echo
 docker ps | grep -E "$IMAGE_NAME|$CONTAINER_NAME|$API_PORT|IMAGE" --color=always
 
 echo "
