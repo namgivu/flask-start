@@ -2,7 +2,7 @@
 Flask ref. https://www.tutorialspoint.com/flask/flask_quick_guide.htm
 
 ## direct run
-require python 3.6 via pyenv and pipenv ref. bit.ly/nnpipenv
+require python 3.7 via pyenv and pipenv ref. bit.ly/nnpipenv
 
 ```bash
 : you@localhost:/path/to/git/cloned/
