@@ -6,9 +6,11 @@ if [[ -z $IMAGE_NAME ]];     then echo 'Param :IMAGE_NAME is required as $1'; ex
 if [[ -z $CONTAINER_NAME ]]; then echo 'Param :CONTAINER_NAME is required as $1'; exit 1; fi
 if [[ -z $API_PORT ]];       then echo 'Param :API_PORT is required as $1'; exit 1; fi
 
-docker-compose  -f "$sh/docker-compose.yml"  up  -d
-#                  #custom docker-compose        #run as background
-#                  #ref. https://stackoverflow.com/a/45158964/248616
+cd $sh
+    docker-compose  -f "$sh/docker-compose.yml"  up  -d
+    #                  #custom docker-compose        #run as background
+    #                  #ref. https://stackoverflow.com/a/45158964/248616
+cd - 1>/dev/null
 
 docker ps | grep -E "$IMAGE_NAME|$CONTAINER_NAME|$API_PORT|IMAGE" --color=always
 
