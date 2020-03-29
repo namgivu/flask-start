@@ -3,11 +3,12 @@ from src.forms import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '2b90d6706f3dcb6919c351822ec0dc11'
+app.static_folder = 'static'
 
 
-@app.route('/')
+@app.route('/success')
 def hi():
-   return 'Hi there!'
+   return 'submit success'
 
 @app.route('/form1', methods=['GET', 'POST'])
 def form1():
@@ -29,6 +30,21 @@ def form1():
 @app.route('/form2', methods=['GET', 'POST'])
 def form2():
    form = ContractDetails()
+   if request.method == 'POST':
+      data = dict(
+         fname=form.fname.data,
+         lname=form.lname.data,
+         job_title=form.job_title.data,
+         salary=form.salary.data,
+         annual_leave_days=form.annual_leave_days.data,
+         working_hours_per_week=form.working_hours_per_week.data,
+         start_date=form.start_date.data,
+         contract_duration=form.contract_duration.data,
+         fringe_benefit=form.fringe_benefit.data,
+         group_insurance_coverage=form.group_insurance_coverage.data,
+         special_arrangements=form.special_arrangements.data
+      )
+      return redirect(url_for('hi'))
    return render_template('form2.html', form=form)
 
 if __name__ == '__main__':
