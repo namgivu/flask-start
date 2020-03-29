@@ -7,6 +7,11 @@ if [[ -z $CONTAINER_NAME ]]; then echo 'Param :CONTAINER_NAME is required as $1'
 if [[ -z $API_PORT ]];       then echo 'Param :API_PORT is required as $1'; exit 1; fi
 
 cd $sh
+    # prepare network
+    echo
+    docker network create "${CONTAINER_NAME}_docker_network"
+
+    # run it up
     echo
     docker-compose  -f "$sh/docker-compose.yml"  up  -d
     #                  #custom docker-compose        #run as background
@@ -21,14 +26,21 @@ cd $sh
 
     # the flask app ready now, printing container log
     echo
-    docker-compose logs
+    docker-compose logs web
 
 cd - 1>/dev/null
 
 echo
 docker ps | grep -E "$IMAGE_NAME|$CONTAINER_NAME|$API_PORT|IMAGE" --color=always
 
-echo "
+cat << EOF
+
+AFTERMATH
 view running container log; ctrl-z to quit log
-cd $sh;  docker-compose logs;  cd - 1>/dev/null
-"
+    cd $sh;  docker-compose logs;          cd - 1>/dev/null
+    cd $sh;  docker-compose logs web;      cd - 1>/dev/null
+    cd $sh;  docker-compose logs mongodb;  cd - 1>/dev/null
+
+sample mongo call
+    docker exec -it ${CONTAINER_NAME}_mongodb bash -c "mongo --eval 'db.getCollectionNames();' "
+EOF

@@ -8,4 +8,29 @@ services:
       - PYTHONPATH=/app
     ports:
       - ${API_PORT}:5000
+
+    networks:
+      - app_docker_network
     restart: unless-stopped
+
+  mongodb:
+    image: bitnami/mongodb:3.6
+    container_name: ${CONTAINER_NAME}_mongodb
+
+    #ports: no need to expose any port from mongo port 27018 - this container be used internally within the network
+
+    networks:
+      - app_docker_network
+    volumes:
+      - v_mongodb:/bitnami
+    restart: unless-stopped
+
+volumes:
+  v_mongodb:
+    driver: local
+    name: ${CONTAINER_NAME}_mongo_volume
+
+networks:
+  app_docker_network:
+    driver: bridge
+    name: ${CONTAINER_NAME}_docker_network  # forced name and no auto-prepended
