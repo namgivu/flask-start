@@ -23,13 +23,12 @@ def form1():
          postal_code=form.postal_code.data,
          country=form.country.data
       )
-      print(data)
       return redirect(url_for('form2'))
    return render_template('form1.html', form=form)
 
-@app.route('/form2')
+@app.route('/form2', methods=['GET', 'POST'])
 def form2():
-   form = ContractDetails
+   form = ContractDetails()
    return render_template('form2.html', form=form)
 
 if __name__ == '__main__':
