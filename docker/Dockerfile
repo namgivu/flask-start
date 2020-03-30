@@ -12,6 +12,7 @@ RUN echo 191120_x
 
 # bundle app source
 COPY . .
+COPY ./.env.container ./.env
 
 # copy .env used for dockerized mode - NOTE this .env is in folder bin/docker/ and to link the api container with the postgres container
 #COPY ./docker/.env .
