@@ -40,6 +40,9 @@ echo "AFTERMATH"
     echo; echo "Run unittest @ mongo basic"
     docker exec -it $CONTAINER_NAME  bash -c "pipenv run pytest -s tests/service/test_mongo.py::Test::test" | grep -E '===.+in' --color=none
 
+    echo; echo "Run endpoint /success"
+    curl -X GET localhost:$API_PORT/success
+
     db=`docker exec -it ${CONTAINER_NAME} bash -c "cat /app/.env | grep MONGO_DB_NAME " `;
     echo; cat << EOF
 
