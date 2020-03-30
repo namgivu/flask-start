@@ -1,4 +1,8 @@
-.venv*/
 .idea/
 
 .python-version
+.venv*/
+
+.env
+
+**.pytest_cache/
