@@ -4,15 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
+pytest-dotenv = "*"
 
 [packages]
 flask = "*"
 flask-wtf = "*"
 pycountry = "*"
 pymongo = "*"
-
-pytest = "*"
-pytest-dotenv = "*"  # autoload .env when running test
 
 [requires]
 python_version = "3.6"
