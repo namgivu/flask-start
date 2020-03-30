@@ -4,7 +4,7 @@ sh=$(cd `dirname $BASH_SOURCE` && pwd)  # sh aka script_home_folder ref. https:/
 source "$sh/.env"
 if [[ -z $CONTAINER_NAME ]]; then echo 'Param :CONTAINER_NAME is required as $1'; exit 1; fi
 
-docker stop $CONTAINER_NAME
-docker rm   $CONTAINER_NAME
+c=${CONTAINER_NAME};       docker stop $c; docker rm $c
+c=${CONTAINER_NAME}_mongo; docker stop $c; docker rm $c
 
 yes | docker container prune
