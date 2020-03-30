@@ -28,12 +28,12 @@ class Test(unittest.TestCase):
 
 
     def _test_insert(self):
-        d = INP; d['_id'] = datetime.now()  # add this field to have unique ObjectId in mongo  # d aka document
+        d = deepcopy(INP); d['_id'] = datetime.now()  # add this field to have unique ObjectId in mongo  # d aka document
         MongoSvc.insert(d, MONGO_TEST_COLLECTION)
 
 
     def test_insert2(self):
-        d = INP; d['_id'] = datetime.now()  # add this field to have unique ObjectId in mongo
+        d = deepcopy(INP); d['_id'] = datetime.now()  # add this field to have unique ObjectId in mongo
         c = MongoSvc.connect(MONGO_TEST_COLLECTION)  # c aka collection
         c.insert_one(d)
 
@@ -56,7 +56,7 @@ class Test(unittest.TestCase):
         assert len(r_all)==1
         r = r_all[0]
         r.pop('_id')
-        assert r == INP
+        assert r == deepcopy(INP)
 
 
     def test_query2(self):
