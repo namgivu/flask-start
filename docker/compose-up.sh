@@ -30,17 +30,25 @@ cd $sh
 
 cd - 1>/dev/null
 
-echo
-docker ps | grep -E "$IMAGE_NAME|$CONTAINER_NAME|$API_PORT|IMAGE" --color=always
+echo "AFTERMATH"
+    echo; echo "Print stack containers"
+    docker ps | grep -E "$IMAGE_NAME|$CONTAINER_NAME|$API_PORT|IMAGE" --color=always
 
-cat << EOF
+    echo; echo "Print app .env"
+    docker exec -it $CONTAINER_NAME bash -c "cat /app/.env | grep -E 'MONGO_DB_[^=]+' --color=always"
 
-AFTERMATH
+    echo; echo "Run unittest @ mongo basic"
+    docker exec -it $CONTAINER_NAME  bash -c "pipenv run pytest -s tests/service/test_mongo.py::Test::test" | grep -E '===.+in' --color=none
+
+    db=`docker exec -it ${CONTAINER_NAME} bash -c "cat /app/.env | grep MONGO_DB_NAME " `;
+    echo; cat << EOF
+
 view running container log; ctrl-z to quit log
     cd $sh;  docker-compose logs;          cd - 1>/dev/null
     cd $sh;  docker-compose logs web;      cd - 1>/dev/null
     cd $sh;  docker-compose logs mongodb;  cd - 1>/dev/null
 
-sample mongo call
-    docker exec -it ${CONTAINER_NAME}_mongodb bash -c "mongo --eval 'db.getCollectionNames();' "
+fancy mongo commands
+    echo; echo "Print mongo db";         docker exec -it ${CONTAINER_NAME}_mongodb bash -c "mongo --quiet     --eval 'db.getMongo().getDBNames();' ";
+    echo; echo "Print mongo collection"; docker exec -it ${CONTAINER_NAME}_mongodb bash -c "mongo --quiet $db --eval 'db.getCollectionNames();' ";
 EOF
