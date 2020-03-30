@@ -25,3 +25,8 @@ http :19111/hi  # should see Hi there!
 ./docker/stop-rm.sh
 
 ```
+
+## run test mongo 
+```bash
+PYTHONPATH=`pwd` pipenv run pytest -s tests/service/test_mongo.py::Test::test
+```
