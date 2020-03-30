@@ -1,3 +1,5 @@
+#TODO extract this test into pymongo-start repo
+
 import unittest
 from datetime import datetime
 from copy import deepcopy
@@ -38,7 +40,9 @@ class Test(unittest.TestCase):
     #endregion test insert
 
 
-    def test_query(self):
+    #region test query
+
+    def test_query1(self):
         c = MongoSvc.connect(MONGO_TEST_COLLECTION)  # c aka collection
 
         # create fixture
@@ -48,8 +52,22 @@ class Test(unittest.TestCase):
         ri_all = c.find({})  # ri_all aka all_row_as_iterator
 
         # assert
-        r_all  = list(ri_all)  # convert to
+        r_all = list(ri_all)  # convert to list
         assert len(r_all)==1
         r = r_all[0]
         r.pop('_id')
         assert r == INP
+
+
+    def test_query2(self):
+        c = MongoSvc.connect(MONGO_TEST_COLLECTION)  # c aka collection
+
+        # create fixture
+        d1=deepcopy(INP); d1['_id']=1; c.insert_one(d1)  # dx aka document
+        d2=deepcopy(INP); d2['_id']=2; c.insert_one(d2)
+
+        # testee code
+        ri=c.find({});        l=list(ri); assert len(l)==2  # ri_all aka all_row_as_iterator
+        ri=c.find({'_id':1}); l=list(ri); assert len(l)==1; r=l[0]; assert r == d1  # l aka list
+
+    #endregion test query
