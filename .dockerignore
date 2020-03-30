@@ -1,4 +1,8 @@
-.venv/
+.git
 .idea/
+
+.python-version
+.venv*/
+**.pytest_cache/
 
 docker/

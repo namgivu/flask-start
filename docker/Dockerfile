@@ -24,5 +24,5 @@ EXPOSE 5000
 # Run the api at 8000
 CMD cd /app; \
     pipenv --rm; \
-    pipenv sync; \
+    pipenv sync -d; \
     pipenv run  python src/app.py
