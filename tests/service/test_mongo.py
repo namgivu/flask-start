@@ -1,5 +1,44 @@
 #TODO extract this test into pymongo-start repo
 
+"""
+mongodb
+    host
+    port
+        database aka :db
+            collection
+                document
+
+            term          dict key level
+            ----------    --------------
+            collection    root
+            document      under root
+                          json value
+
+            :db           dict object
+            :db           is a dict
+
+            # collection          # document
+            :db['key0']           = a_collection
+                                  = [ list-of-document ]
+
+            :db['key0']           == :db['key-level-root']
+                                  == :db['collection_name']
+
+            :db['collection_name'] = [ list-of-document ]
+            :db['collection_name'] = [
+                document0,
+                document1,
+                document2,
+                ...
+            ]
+                documentX = is_a_dict
+                documentX = {
+                    'key1': {
+                        'key2': ...
+                    }
+                {
+"""
+
 import unittest
 from datetime import datetime
 from copy import deepcopy
@@ -53,6 +92,8 @@ class Test(unittest.TestCase):
 
         # assert
         r_all = list(ri_all)  # convert to list
+                              # r_all == :db['collection_name'] = [ list-of-document ]
+                              # r_all == :db['collection_name'] = [ list-of-document ] with key==value filtered if query by c.find({key:value})
         assert len(r_all)==1
         r = r_all[0]
         r.pop('_id')
