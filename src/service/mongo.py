@@ -1,8 +1,9 @@
 import os
 from pymongo import MongoClient
-
+from dotenv import load_dotenv
 from .misc import torr
 
+load_dotenv() # https://preslav.me/2019/01/09/dotenv-files-python/
 
 MONGO_DB_HOST = os.environ.get('MONGO_DB_HOST'); torr(MONGO_DB_HOST, 'Require :MONGO_DB_HOST in system variable')
 MONGO_DB_PORT = os.environ.get('MONGO_DB_PORT', 27017)

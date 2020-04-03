@@ -27,6 +27,12 @@ http :19111/hi  # should see Hi there!
 ```
 
 ## run test mongo 
+# copy .env.sample to .env
+
+```bash
+cp .evn.sample .env 
+```
+
 ```bash
 PYTHONPATH=`pwd` pipenv run pytest -s tests/service/test_mongo.py::Test::test
 ```
