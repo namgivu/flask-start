@@ -1,6 +1,7 @@
 from flask import *
 from src.forms import *
 import src.service.mongo as MongoSvc
+from src.dynamic_form.demo_dynamic_form import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '2b90d6706f3dcb6919c351822ec0dc11'
@@ -51,6 +52,26 @@ def form2():
       return redirect(url_for('hi'))
 
    return render_template('form2.html', form=form)
+
+@app.route('/dynamic_form', methods=['GET', 'POST'])
+def dynamic_form():
+   form = demo_dynamic_form()
+   if request.method == 'POST':
+      data = dict(
+         First_Name                 = form.First_Name.data,
+         Last_Name                  = form.Last_Name.data,
+         Email                      = form.Email.data,
+         Address                    = form.Address.data,
+         City                       = form.City.data,
+         Province                   = form.Province.data,
+         Postal_Code                = form.Postal_Code.data,
+         Country                    = form.Country.data,
+         Job_Title                  = form.Job_Title.data,
+         Contract_Duration          = form.Contract_Duration.data
+      )
+      return data
+
+   return render_template('dynamic_form/demo_dynamic_form.html', form=form)
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=5000, debug=True)
