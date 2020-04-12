@@ -15,5 +15,5 @@ class Test:
             'Contract Duration' : FIELD_TYPE.str,
             'Next': FIELD_TYPE.submit
         }
-        form_name = 'demo_dynamic_form'
+        form_name = 'demo_dynamic_form_3'
         dynamic_form(fields, form_name)

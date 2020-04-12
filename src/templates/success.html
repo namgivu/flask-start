@@ -9,7 +9,10 @@
 <body>
     <div class="container">
         <h4>submit success</h4>
-{#        <a href="{{ url_for('.download_general') }}" class="btn btn-success"> Generate Excel Report For General Details</a>#}
-{#        <a href="{{ url_for('.download_contract') }}" class="btn btn-success"> Generate Excel Report For Contract Details</a>#}
+        <form method="post">
+        {% for i in data %}
+        <button type="submit" name="filename" value="{{ i }}" class="btn btn-success">{{ i }}</button>
+        {% endfor %}
+        </form>
     </div>
 </body>
