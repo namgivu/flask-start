@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">demo_dynamic_form</h2>
+        <br>
+        <form method="post" action="">
+                    <fieldset class="form-group">
+                        {{ form.First_Name.label }}
+                        {{ form.First_Name(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Last_Name.label }}
+                        {{ form.Last_Name(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Email.label }}
+                        {{ form.Email(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Address.label }}
+                        {{ form.Address(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.City.label }}
+                        {{ form.City(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Province.label }}
+                        {{ form.Province(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Postal_Code.label }}
+                        {{ form.Postal_Code(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Country.label }}
+                        {{ form.Country(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Job_Title.label }}
+                        {{ form.Job_Title(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Contract_Duration.label }}
+                        {{ form.Contract_Duration(class="form-control") }}
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        {{ form.Next(class="btn btn-success") }}
+                    </fieldset>
+
+            </form>
+    </div>
+</body>
+</html>
