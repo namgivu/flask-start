@@ -1,6 +1,5 @@
-#TODO extract this test into pymongo-start repo
-
 """
+ref. https://gitlab.com/namgivu/flask-start
 mongodb
     host
     port
