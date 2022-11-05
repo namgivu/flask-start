@@ -7,7 +7,7 @@ require python 3.7 via pyenv and pipenv ref. bit.ly/nnpipenv
 ```bash
 : you@localhost:/path/to/git/cloned/
 pipenv sync
-pipenv run python src/app.py
+pipenv run python flask_webapp/app.py
 ```
 
 ## docker run

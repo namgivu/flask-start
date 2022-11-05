@@ -24,4 +24,4 @@ EXPOSE 5000
 CMD cd /app; \
     pipenv --rm; \
     pipenv sync; \
-    pipenv run  python src/app.py
+    pipenv run  python flask_webapp/app.py
